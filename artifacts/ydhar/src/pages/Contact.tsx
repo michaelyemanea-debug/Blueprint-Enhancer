@@ -1,15 +1,46 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Phone, CheckCircle, ArrowRight } from 'lucide-react';
+import { Mail, MapPin, Phone, CheckCircle, ArrowRight, Loader2 } from 'lucide-react';
+import { useCreateContactSubmission } from '@workspace/api-client-react';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    company: '',
+    email: '',
+    phone: '',
+    assetClass: '',
+    message: '',
+    website: '', // honeypot -- must stay empty
+  });
+
+  const submission = useCreateContactSubmission();
+
+  const updateField = (field: keyof typeof formData) => (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+  ) => {
+    setFormData((prev) => ({ ...prev, [field]: e.target.value }));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setErrorMessage(null);
+
+    submission.mutate(
+      { data: formData },
+      {
+        onSuccess: () => setSubmitted(true),
+        onError: () => {
+          setErrorMessage(
+            'We could not send your inquiry right now. Please try again, or email us directly at ydharav@gmail.com.',
+          );
+        },
+      },
+    );
   };
 
   return (
@@ -128,25 +159,44 @@ export default function Contact() {
                     </motion.div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-6">
+                      {/* Honeypot field: hidden from sighted users, but visible to naive bots that fill every input. */}
+                      <div className="sr-only" aria-hidden="true">
+                        <label htmlFor="website">Leave this field empty</label>
+                        <input
+                          type="text"
+                          id="website"
+                          name="website"
+                          tabIndex={-1}
+                          autoComplete="off"
+                          value={formData.website}
+                          onChange={updateField('website')}
+                        />
+                      </div>
+
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                           <label className="text-xs font-mono uppercase text-muted-foreground font-medium tracking-wide">Full Name</label>
-                          <input type="text" required className="w-full h-14 px-4 bg-background border border-border focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all" />
+                          <input type="text" required value={formData.name} onChange={updateField('name')} className="w-full h-14 px-4 bg-background border border-border focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all" />
                         </div>
                         <div className="space-y-2">
                           <label className="text-xs font-mono uppercase text-muted-foreground font-medium tracking-wide">Company Name</label>
-                          <input type="text" required className="w-full h-14 px-4 bg-background border border-border focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all" />
+                          <input type="text" value={formData.company} onChange={updateField('company')} className="w-full h-14 px-4 bg-background border border-border focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all" />
                         </div>
                       </div>
                       
                       <div className="space-y-2">
                         <label className="text-xs font-mono uppercase text-muted-foreground font-medium tracking-wide">Corporate Email</label>
-                        <input type="email" required className="w-full h-14 px-4 bg-background border border-border focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all" />
+                        <input type="email" required value={formData.email} onChange={updateField('email')} className="w-full h-14 px-4 bg-background border border-border focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all" />
+                      </div>
+
+                      <div className="space-y-2">
+                        <label className="text-xs font-mono uppercase text-muted-foreground font-medium tracking-wide">Phone Number</label>
+                        <input type="tel" value={formData.phone} onChange={updateField('phone')} className="w-full h-14 px-4 bg-background border border-border focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all" />
                       </div>
                       
                       <div className="space-y-2">
                         <label className="text-xs font-mono uppercase text-muted-foreground font-medium tracking-wide">Subject / Asset Class</label>
-                        <select required className="w-full h-14 px-4 bg-background border border-border focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all appearance-none">
+                        <select required value={formData.assetClass} onChange={updateField('assetClass')} className="w-full h-14 px-4 bg-background border border-border focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all appearance-none">
                           <option value="">Select an option</option>
                           <option value="manufacturing">Manufacturing & Heavy Industry</option>
                           <option value="financial">Financial & Public Infrastructure</option>
@@ -159,11 +209,23 @@ export default function Contact() {
 
                       <div className="space-y-2">
                         <label className="text-xs font-mono uppercase text-muted-foreground font-medium tracking-wide">Message Details</label>
-                        <textarea required rows={5} className="w-full p-4 bg-background border border-border focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all resize-none"></textarea>
+                        <textarea required rows={5} value={formData.message} onChange={updateField('message')} className="w-full p-4 bg-background border border-border focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all resize-none"></textarea>
                       </div>
 
-                      <button type="submit" className="w-full bg-primary text-primary-foreground h-14 font-medium hover:bg-primary/90 transition-all hover:shadow-lg flex items-center justify-center gap-2 group">
-                        Transmit Request <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                      {errorMessage && (
+                        <p className="text-sm text-red-600">{errorMessage}</p>
+                      )}
+
+                      <button type="submit" disabled={submission.isPending} className="w-full bg-primary text-primary-foreground h-14 font-medium hover:bg-primary/90 transition-all hover:shadow-lg flex items-center justify-center gap-2 group disabled:opacity-60 disabled:cursor-not-allowed">
+                        {submission.isPending ? (
+                          <>
+                            Sending <Loader2 className="w-4 h-4 animate-spin" />
+                          </>
+                        ) : (
+                          <>
+                            Transmit Request <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                          </>
+                        )}
                       </button>
                     </form>
                   )}

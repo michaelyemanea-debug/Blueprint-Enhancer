@@ -10,6 +10,8 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: contact
+    description: Contact form submissions
 paths:
   /healthz:
     get:
@@ -24,7 +26,53 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /contact-submissions:
+    post:
+      operationId: createContactSubmission
+      tags: [contact]
+      summary: Submit a contact inquiry
+      description: Public endpoint used by the contact form. Rate-limited.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContactSubmissionInput"
+      responses:
+        "201":
+          description: Submission accepted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContactSubmissionAck"
+        "400":
+          description: Invalid input
+        "429":
+          description: Too many requests
+    get:
+      operationId: listContactSubmissions
+      tags: [contact]
+      summary: List contact inquiries
+      description: Admin-only endpoint. Requires the x-admin-key header.
+      security:
+        - AdminKey: []
+      responses:
+        "200":
+          description: List of submissions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ContactSubmission"
+        "401":
+          description: Unauthorized
 components:
+  securitySchemes:
+    AdminKey:
+      type: apiKey
+      in: header
+      name: x-admin-key
   schemas:
     HealthStatus:
       type: object
@@ -33,4 +81,59 @@ components:
           type: string
       required:
         - status
+    ContactSubmissionInput:
+      type: object
+      required: [name, email, message]
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 200
+        company:
+          type: ["string", "null"]
+          maxLength: 200
+        email:
+          type: string
+          maxLength: 320
+        phone:
+          type: ["string", "null"]
+          maxLength: 50
+        assetClass:
+          type: ["string", "null"]
+          maxLength: 100
+        message:
+          type: string
+          minLength: 1
+          maxLength: 5000
+        website:
+          type: ["string", "null"]
+          description: Honeypot field. Must be left empty by real users.
+    ContactSubmissionAck:
+      type: object
+      properties:
+        success:
+          type: boolean
+      required:
+        - success
+    ContactSubmission:
+      type: object
+      required: [id, name, email, message, createdAt]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        company:
+          type: ["string", "null"]
+        email:
+          type: string
+        phone:
+          type: ["string", "null"]
+        assetClass:
+          type: ["string", "null"]
+        message:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
 
