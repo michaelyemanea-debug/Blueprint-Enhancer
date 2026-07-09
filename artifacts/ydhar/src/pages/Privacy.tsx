@@ -85,7 +85,7 @@ export default function Privacy() {
               <div className="bg-muted p-8 mt-8 border border-border rounded-sm">
                 <p className="mb-0">
                   <strong>Email:</strong> <a href="mailto:compliance@ydhar.com" className="text-primary hover:text-accent transition-colors">compliance@ydhar.com</a><br />
-                  <strong className="mt-4 inline-block">Address:</strong> Bole Sub-City, Woreda 03, Addis Ababa, Ethiopia
+                  <strong className="mt-4 inline-block">Address:</strong> Ayertena, Ydhar Building, 3rd Floor, Addis Ababa, Ethiopia
                 </p>
               </div>
             </motion.div>

@@ -58,7 +58,7 @@ export default function Contact() {
                     <div>
                       <h4 className="font-mono text-sm font-bold uppercase text-foreground mb-2 tracking-wider">Location</h4>
                       <p className="text-muted-foreground text-base leading-relaxed">
-                        Bole Sub-City, Woreda 03<br />
+                        Ayertena, Ydhar Building, 3rd Floor<br />
                         Addis Ababa, Ethiopia
                       </p>
                     </div>
@@ -70,8 +70,8 @@ export default function Contact() {
                     </div>
                     <div>
                       <h4 className="font-mono text-sm font-bold uppercase text-foreground mb-2 tracking-wider">Email inquiries</h4>
-                      <a href="mailto:contact@ydhar.com" className="text-primary hover:text-accent transition-colors font-medium text-base inline-flex items-center gap-2">
-                        contact@ydhar.com <ArrowRight className="w-4 h-4" />
+                      <a href="mailto:ydharav@gmail.com" className="text-primary hover:text-accent transition-colors font-medium text-base inline-flex items-center gap-2">
+                        ydharav@gmail.com <ArrowRight className="w-4 h-4" />
                       </a>
                     </div>
                   </div>
@@ -81,9 +81,11 @@ export default function Contact() {
                       <Phone className="w-6 h-6" />
                     </div>
                     <div>
-                      <h4 className="font-mono text-sm font-bold uppercase text-foreground mb-2 tracking-wider">Direct Line</h4>
-                      <p className="text-muted-foreground font-mono text-lg">
-                        +251 (0) 11 123 4567
+                      <h4 className="font-mono text-sm font-bold uppercase text-foreground mb-2 tracking-wider">Direct Lines</h4>
+                      <p className="text-muted-foreground font-mono text-base leading-relaxed">
+                        +251 911 42 92 39<br />
+                        +251 113 69 39 40<br />
+                        +251 911 44 04 54
                       </p>
                     </div>
                   </div>

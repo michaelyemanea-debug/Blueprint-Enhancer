@@ -17,7 +17,7 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-primary-foreground/70 text-sm leading-relaxed mb-6">
-              Ethiopia's premier tangible and intangible asset valuation firm. Independent, accurate, and accountable solutions for complex infrastructure and diverse industries.
+Engineering intelligence meets financial foresight — independent, precise, and forward-looking asset valuation for complex infrastructure and diverse industries.
             </p>
             <div className="flex items-center gap-3 text-sm text-primary-foreground/60 font-mono bg-white/5 p-3 border border-white/10 w-fit">
               <ShieldCheck className="w-5 h-5 text-accent" />
@@ -56,13 +56,18 @@ export function Footer() {
             </h4>
             <address className="not-italic text-sm text-primary-foreground/70 space-y-4">
               <p className="leading-relaxed">
-                Bole Sub-City, Woreda 03<br />
+                Ayertena, Ydhar Building, 3rd Floor<br />
                 Addis Ababa, Ethiopia
               </p>
               <div className="flex flex-col gap-3 pt-2">
-                <a href="mailto:contact@ydhar.com" className="inline-flex items-center gap-2 text-white hover:text-accent transition-colors group">
-                  <span className="border-b border-primary-foreground/30 group-hover:border-accent pb-0.5 transition-colors">contact@ydhar.com</span>
+                <a href="mailto:ydharav@gmail.com" className="inline-flex items-center gap-2 text-white hover:text-accent transition-colors group">
+                  <span className="border-b border-primary-foreground/30 group-hover:border-accent pb-0.5 transition-colors">ydharav@gmail.com</span>
                 </a>
+                <div className="flex flex-col gap-1 font-mono text-xs text-primary-foreground/70">
+                  <span>+251 911 42 92 39</span>
+                  <span>+251 113 69 39 40</span>
+                  <span>+251 911 44 04 54</span>
+                </div>
                 <div className="font-mono text-[10px] tracking-widest mt-2 text-primary-foreground/40 bg-white/5 px-3 py-1.5 w-fit border border-white/5">
                   EN | AM | TI
                 </div>

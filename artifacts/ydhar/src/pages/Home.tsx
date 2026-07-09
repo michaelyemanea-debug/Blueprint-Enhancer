@@ -56,7 +56,7 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-lg md:text-xl text-primary-foreground/80 mb-12 max-w-2xl leading-relaxed"
               >
-                Ethiopia's premier tangible and intangible asset valuation firm. Trusted by top institutions for landmark valuations across agriculture, real estate, manufacturing, and public infrastructure.
+Where engineering intelligence meets financial foresight. We decode the true value of tangible and intangible assets with precision built for tomorrow's economy — trusted by leading institutions across agriculture, real estate, manufacturing, and public infrastructure.
               </motion.p>
               
               <motion.div 
