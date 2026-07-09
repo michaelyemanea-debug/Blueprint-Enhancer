@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 
@@ -8,64 +9,86 @@ export default function Privacy() {
       <Navbar />
       
       <main className="flex-grow">
-        <section className="bg-muted pt-24 pb-16 border-b border-border">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <h1 className="text-3xl md:text-4xl font-display font-semibold mb-4 text-foreground">Data Privacy & Security Policy</h1>
-            <p className="text-muted-foreground">Effective Date: January 1, 2024</p>
+        <section className="bg-muted pt-32 pb-24 border-b border-border relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid-pattern opacity-30"></div>
+          <div className="container mx-auto px-4 max-w-4xl relative z-10">
+            <motion.h1 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-4xl md:text-6xl font-display font-semibold mb-6 text-foreground tracking-tight"
+            >
+              Data Privacy & Security Policy
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-muted-foreground text-lg"
+            >
+              Effective Date: January 1, 2024
+            </motion.p>
           </div>
         </section>
 
-        <section className="py-16 bg-background">
+        <section className="py-24 bg-background">
           <div className="container mx-auto px-4 max-w-4xl">
-            <div className="prose prose-slate max-w-none text-muted-foreground">
-              <p className="text-lg text-foreground font-medium mb-8">
-                At YDHAR Asset Valuation PLC, we recognize that the valuation of tangible and intangible assets involves highly sensitive corporate and financial data. We are committed to maintaining the highest standards of data confidentiality, residency, and security for our clients across Ethiopia.
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="prose prose-slate prose-lg max-w-none text-muted-foreground"
+            >
+              <p className="text-xl text-foreground font-medium mb-12 leading-relaxed">
+                At Ydhar Asset Valuation and Consultancy, we recognize that the valuation of tangible and intangible assets involves highly sensitive corporate and financial data. We are committed to maintaining the highest standards of data confidentiality, residency, and security for our clients.
               </p>
 
-              <h2 className="text-2xl font-display font-semibold text-foreground mt-10 mb-4">1. Collection and Storage of Client Data</h2>
+              <h2 className="text-3xl font-display font-semibold text-foreground mt-16 mb-6">1. Collection and Storage of Client Data</h2>
               <p>
                 During the execution of a valuation mandate, our field teams and analysts collect necessary documentation, which may include:
               </p>
-              <ul>
+              <ul className="space-y-2">
                 <li>Fixed Asset Registers (FAR) and corporate ERP data extracts.</li>
                 <li>On-site photographs of plant machinery, infrastructure, and facilities.</li>
                 <li>Financial statements, legal contracts, and intellectual property records for business valuation.</li>
               </ul>
               <p>
-                All collected data is stored on secure, encrypted corporate servers. We enforce strict data residency practices, ensuring that sensitive financial and operational data pertaining to Ethiopian enterprises remains within highly secure, locally compliant infrastructure.
+                All collected data is stored on secure, encrypted corporate servers. We enforce strict data residency practices, ensuring that sensitive financial and operational data pertaining to our clients' enterprises remains within highly secure, compliant infrastructure.
               </p>
 
-              <h2 className="text-2xl font-display font-semibold text-foreground mt-10 mb-4">2. Protection of On-Site Media</h2>
+              <h2 className="text-3xl font-display font-semibold text-foreground mt-16 mb-6">2. Protection of On-Site Media</h2>
               <p>
                 Photographs and technical diagrams captured by our field engineering teams are strictly utilized for the purpose of validating the existence, condition, and configuration of assets. 
               </p>
-              <ul>
+              <ul className="space-y-2">
                 <li>Media is transferred directly from field devices to our secure internal network via encrypted channels.</li>
-                <li>Images of proprietary manufacturing processes or sensitive clinical environments are handled under strict Non-Disclosure Agreements (NDAs).</li>
+                <li>Images of proprietary manufacturing processes or sensitive corporate environments are handled under strict Non-Disclosure Agreements (NDAs).</li>
                 <li>No client site imagery is ever used for marketing or public portfolios without explicit, written authorization from the client.</li>
               </ul>
 
-              <h2 className="text-2xl font-display font-semibold text-foreground mt-10 mb-4">3. Data Retention and Destruction</h2>
+              <h2 className="text-3xl font-display font-semibold text-foreground mt-16 mb-6">3. Data Retention and Destruction</h2>
               <p>
-                In compliance with International Valuation Standards (IVS) and local financial auditing requirements, YDHAR retains final valuation reports and supporting technical workfiles for a mandatory statutory period (typically 5 to 7 years) to satisfy audit and regulatory inquiries.
+                In compliance with International Valuation Standards (IVS) and local financial auditing requirements, Ydhar Asset Valuation and Consultancy retains final valuation reports and supporting technical workfiles for a mandatory statutory period (typically 5 to 7 years) to satisfy audit and regulatory inquiries.
               </p>
               <p>
                 Upon the expiration of the mandatory retention period, or upon explicit client request where legally permissible, all digital records and physical documentation are permanently and securely destroyed.
               </p>
 
-              <h2 className="text-2xl font-display font-semibold text-foreground mt-10 mb-4">4. Digital Security Protocols</h2>
+              <h2 className="text-3xl font-display font-semibold text-foreground mt-16 mb-6">4. Digital Security Protocols</h2>
               <p>
                 Our digital environment utilizes AES-256 encryption for data at rest and TLS 1.3 for data in transit. Access to client files is restricted on a strict least-privilege basis—only the lead valuer, assigned engineering team, and authorized review directors possess access to a project's data vault.
               </p>
 
-              <h2 className="text-2xl font-display font-semibold text-foreground mt-10 mb-4">5. Contact Regarding Privacy</h2>
+              <h2 className="text-3xl font-display font-semibold text-foreground mt-16 mb-6">5. Contact Regarding Privacy</h2>
               <p>
                 For questions regarding how we handle your corporate data, or to request an audit of data held regarding a past valuation mandate, please contact our Compliance Officer at:
-                <br /><br />
-                <strong>Email:</strong> compliance@ydhar.com<br />
-                <strong>Address:</strong> Bole Sub-City, Woreda 03, Addis Ababa, Ethiopia
               </p>
-            </div>
+              <div className="bg-muted p-8 mt-8 border border-border rounded-sm">
+                <p className="mb-0">
+                  <strong>Email:</strong> <a href="mailto:compliance@ydhar.com" className="text-primary hover:text-accent transition-colors">compliance@ydhar.com</a><br />
+                  <strong className="mt-4 inline-block">Address:</strong> Bole Sub-City, Woreda 03, Addis Ababa, Ethiopia
+                </p>
+              </div>
+            </motion.div>
           </div>
         </section>
       </main>
