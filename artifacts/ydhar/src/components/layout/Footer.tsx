@@ -30,10 +30,10 @@ Engineering intelligence meets financial foresight — independent, precise, and
               <span className="w-8 h-px bg-accent"></span> Services
             </h4>
             <ul className="space-y-4 text-sm text-primary-foreground/70">
-              <li><Link href="/services" className="hover:text-accent transition-colors flex items-center gap-2 group"><ArrowRight className="w-3 h-3 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Agriculture & Real Estate</Link></li>
               <li><Link href="/services" className="hover:text-accent transition-colors flex items-center gap-2 group"><ArrowRight className="w-3 h-3 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Manufacturing & Heavy Industry</Link></li>
-              <li><Link href="/services" className="hover:text-accent transition-colors flex items-center gap-2 group"><ArrowRight className="w-3 h-3 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Telecommunications & Tech</Link></li>
               <li><Link href="/services" className="hover:text-accent transition-colors flex items-center gap-2 group"><ArrowRight className="w-3 h-3 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Financial & Government Institutions</Link></li>
+              <li><Link href="/services" className="hover:text-accent transition-colors flex items-center gap-2 group"><ArrowRight className="w-3 h-3 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Telecommunications & Tech</Link></li>
+              <li><Link href="/services" className="hover:text-accent transition-colors flex items-center gap-2 group"><ArrowRight className="w-3 h-3 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Real Estate & Agriculture</Link></li>
               <li><Link href="/business-valuation" className="hover:text-accent transition-colors flex items-center gap-2 group"><ArrowRight className="w-3 h-3 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" /> Business Valuation</Link></li>
             </ul>
           </div>

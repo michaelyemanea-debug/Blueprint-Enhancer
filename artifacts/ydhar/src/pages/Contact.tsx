@@ -148,11 +148,11 @@ export default function Contact() {
                         <label className="text-xs font-mono uppercase text-muted-foreground font-medium tracking-wide">Subject / Asset Class</label>
                         <select required className="w-full h-14 px-4 bg-background border border-border focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all appearance-none">
                           <option value="">Select an option</option>
-                          <option value="real_estate">Real Estate & Commercial Property</option>
-                          <option value="agriculture">Agriculture & Agro-Processing</option>
                           <option value="manufacturing">Manufacturing & Heavy Industry</option>
                           <option value="financial">Financial & Public Infrastructure</option>
                           <option value="business">Business Valuation / Intangibles</option>
+                          <option value="real_estate">Real Estate & Commercial Property</option>
+                          <option value="agriculture">Agriculture & Agro-Processing</option>
                           <option value="other">Other Inquiry</option>
                         </select>
                       </div>

@@ -56,7 +56,7 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-lg md:text-xl text-primary-foreground/80 mb-12 max-w-2xl leading-relaxed"
               >
-Where engineering intelligence meets financial foresight. We decode the true value of tangible and intangible assets with precision built for tomorrow's economy — trusted by leading institutions across agriculture, real estate, manufacturing, and public infrastructure.
+Where engineering intelligence meets financial foresight. We decode the true value of tangible and intangible assets with precision built for tomorrow's economy — trusted by leading industrial companies, financial institutions, and enterprises across manufacturing, real estate, and public infrastructure.
               </motion.p>
               
               <motion.div 
@@ -107,7 +107,7 @@ Where engineering intelligence meets financial foresight. We decode the true val
             <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-6">
               <div className="max-w-2xl">
                 <h2 className="text-4xl md:text-5xl font-display font-semibold mb-6 text-foreground tracking-tight">Comprehensive Sector Expertise</h2>
-                <p className="text-muted-foreground text-lg leading-relaxed">We deploy specialized engineering and financial teams to diverse operational environments, delivering precise valuation data for real estate, agriculture, manufacturing, and beyond.</p>
+                <p className="text-muted-foreground text-lg leading-relaxed">We deploy specialized engineering and financial teams to diverse operational environments, delivering precise valuation data for industrial companies, financial institutions, manufacturing, real estate, and beyond.</p>
               </div>
               <Link href="/services" className="group text-primary font-medium hover:text-accent transition-colors flex items-center gap-2 bg-muted px-6 py-3 rounded-full hover:bg-primary hover:text-primary-foreground">
                 View all sectors <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -116,10 +116,10 @@ Where engineering intelligence meets financial foresight. We decode the true val
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { title: 'Agriculture & Processing', icon: Trees, desc: 'Commercial farms, coffee export infrastructure, and agro-processing facilities.' },
-                { title: 'Real Estate & Commercial', icon: Building2, desc: 'Corporate headquarters, hospitality portfolios, and mixed-use developments.' },
                 { title: 'Manufacturing & Logistics', icon: Factory, desc: 'FMCG lines, transport fleets, and industrial warehousing hubs.' },
-                { title: 'Public & Financial', icon: Landmark, desc: 'Government infrastructure, banking collateral, and telecom networks.' }
+                { title: 'Public & Financial', icon: Landmark, desc: 'Government infrastructure, banking collateral, and telecom networks.' },
+                { title: 'Real Estate & Commercial', icon: Building2, desc: 'Corporate headquarters, hospitality portfolios, and mixed-use developments.' },
+                { title: 'Agriculture & Processing', icon: Trees, desc: 'Commercial farms, coffee export infrastructure, and agro-processing facilities.' }
               ].map((pillar, i) => (
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
@@ -268,6 +268,12 @@ Where engineering intelligence meets financial foresight. We decode the true val
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
+                  sector: 'Industrial Manufacturing',
+                  scale: 'High-Value Scale',
+                  title: 'Steel Rolling Mill M&A',
+                  desc: 'Complete componentization and valuation of a major production facility for acquisition due diligence, ensuring IFRS 3 compliance for the acquiring conglomerate.'
+                },
+                {
                   sector: 'Commercial Real Estate',
                   scale: 'National Scale',
                   title: 'Mixed-Use Development Portfolio',
@@ -278,12 +284,6 @@ Where engineering intelligence meets financial foresight. We decode the true val
                   scale: 'Enterprise Scale',
                   title: 'Coffee Export Infrastructure',
                   desc: 'Intelligent field tagging and valuation of remote processing stations and heavy vehicle fleets for a leading export union securing international financing.'
-                },
-                {
-                  sector: 'Industrial Manufacturing',
-                  scale: 'High-Value Scale',
-                  title: 'Steel Rolling Mill M&A',
-                  desc: 'Complete componentization and valuation of a major production facility for acquisition due diligence, ensuring IFRS 3 compliance for the acquiring conglomerate.'
                 }
               ].map((study, i) => (
                 <motion.div 

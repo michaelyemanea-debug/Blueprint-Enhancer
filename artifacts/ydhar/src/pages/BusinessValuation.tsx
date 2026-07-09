@@ -156,6 +156,11 @@ export default function BusinessValuation() {
                     <td className="p-6 border-b border-border">Depreciated Replacement Cost (DRC), Componentization</td>
                   </tr>
                   <tr className="hover:bg-muted/30 transition-colors">
+                    <td className="p-6 border-b border-border font-medium text-foreground">Corporate M&A</td>
+                    <td className="p-6 border-b border-border">Going concerns, intellectual property, brand equity</td>
+                    <td className="p-6 border-b border-border">Discounted Cash Flow (DCF), Relief from Royalty</td>
+                  </tr>
+                  <tr className="hover:bg-muted/30 transition-colors">
                     <td className="p-6 border-b border-border font-medium text-foreground">Real Estate</td>
                     <td className="p-6 border-b border-border">Commercial towers, residential developments, land banks</td>
                     <td className="p-6 border-b border-border">Income Capitalization, Direct Market Comparison</td>
@@ -164,11 +169,6 @@ export default function BusinessValuation() {
                     <td className="p-6 border-b border-border font-medium text-foreground">Agriculture</td>
                     <td className="p-6 border-b border-border">Biological assets, processing stations, heavy equipment</td>
                     <td className="p-6 border-b border-border">Market Value for Existing Use, DRC for static infrastructure</td>
-                  </tr>
-                  <tr className="hover:bg-muted/30 transition-colors">
-                    <td className="p-6 border-b border-border font-medium text-foreground">Corporate M&A</td>
-                    <td className="p-6 border-b border-border">Going concerns, intellectual property, brand equity</td>
-                    <td className="p-6 border-b border-border">Discounted Cash Flow (DCF), Relief from Royalty</td>
                   </tr>
                 </tbody>
               </table>

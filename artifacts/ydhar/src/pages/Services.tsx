@@ -13,6 +13,22 @@ import energyImg from '@assets/generated_images/services-energy.jpg';
 export default function Services() {
   const pillars = [
     {
+      id: 'manufacturing',
+      title: 'Manufacturing & Heavy Industry',
+      icon: Activity,
+      description: 'Comprehensive valuation for complex industrial facilities where plant machinery and highly specialized equipment represent the core asset value.',
+      features: ['Steel rolling mills & foundries', 'Chemical processing plants', 'Textiles & apparel manufacturing', 'FMCG production lines'],
+      image: energyImg
+    },
+    {
+      id: 'financial',
+      title: 'Financial & Public Infrastructure',
+      icon: Landmark,
+      description: 'Supporting banks, telecom operators, corporates, and public institutions with rigorous valuation of enterprise assets and widespread networks.',
+      features: ['Bank collateral & REO assets', 'Telecommunication towers & networks', 'Government utility infrastructure', 'Transport & logistics fleets'],
+      image: medicalImg
+    },
+    {
       id: 'real-estate',
       title: 'Real Estate & Commercial Property',
       icon: Building2,
@@ -27,22 +43,6 @@ export default function Services() {
       description: 'Expertise in valuing complex agricultural assets, biological assets, and processing infrastructure critical to the national export economy.',
       features: ['Commercial farms & plantations', 'Coffee washing & export stations', 'Silos & grain storage facilities', 'Food processing machinery'],
       image: miningImg // reuse for now, or update if we have an ag image
-    },
-    {
-      id: 'manufacturing',
-      title: 'Manufacturing & Heavy Industry',
-      icon: Activity,
-      description: 'Comprehensive valuation for complex industrial facilities where plant machinery and highly specialized equipment represent the core asset value.',
-      features: ['Steel rolling mills & foundries', 'Chemical processing plants', 'Textiles & apparel manufacturing', 'FMCG production lines'],
-      image: energyImg
-    },
-    {
-      id: 'financial',
-      title: 'Financial & Public Infrastructure',
-      icon: Landmark,
-      description: 'Supporting public institutions, telecom operators, and financial sectors with rigorous valuation of widespread networks and infrastructure.',
-      features: ['Telecommunication towers & networks', 'Bank collateral & REO assets', 'Government utility infrastructure', 'Transport & logistics fleets'],
-      image: medicalImg
     }
   ];
 
@@ -76,7 +76,7 @@ export default function Services() {
                 transition={{ delay: 0.2 }}
                 className="text-lg md:text-xl text-primary-foreground/80 leading-relaxed"
               >
-                From commercial real estate to agricultural processing and heavy industry, our field engineering teams deliver precise asset identification, verification, and valuation across virtually every sector.
+From heavy industry and financial institutions to public infrastructure and commercial enterprise, our field engineering teams deliver precise asset identification, verification, and valuation across virtually every sector.
               </motion.p>
             </div>
           </div>

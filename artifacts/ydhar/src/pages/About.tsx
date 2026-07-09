@@ -60,7 +60,7 @@ export default function About() {
                     Backed by global industry standards like IVS and IFRS, our professionally qualified valuers and engineers partner with leading financial institutions, construction conglomerates, and government sectors. We don't just observe assets; we understand the engineering, market dynamics, and economics behind them.
                   </p>
                   <p>
-                    Our expertise spans across heavy industries, commercial property portfolios, agricultural infrastructure, fleet valuation, and business intangibles. Whether it's an acquisition due diligence, insurance renewal, or asset restructuring, our reports provide absolute clarity and confidence.
+                    Our expertise spans across heavy industries, financial and corporate institutions, commercial property portfolios, fleet valuation, business intangibles, and agricultural infrastructure. Whether it's an acquisition due diligence, insurance renewal, or asset restructuring, our reports provide absolute clarity and confidence.
                   </p>
                 </div>
                 
