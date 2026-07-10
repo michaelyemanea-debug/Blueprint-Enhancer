@@ -1,0 +1,1 @@
+- [Admin key-gated endpoints](admin-key-endpoints.md) — shared-secret admin routes (x-admin-key style) need their own rate limiter, not just the public-facing one.

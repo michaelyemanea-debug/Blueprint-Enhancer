@@ -22,6 +22,16 @@ const contactFormLimiter = rateLimit({
   message: { error: "Too many submissions. Please try again later." },
 });
 
+// Admin read endpoint -- guards against brute-forcing the shared admin key.
+// Applied per-IP before credentials are even checked.
+const adminReadLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many requests. Please try again later." },
+});
+
 router.post(
   "/contact-submissions",
   contactFormLimiter,
@@ -69,6 +79,7 @@ router.post(
 
 router.get(
   "/contact-submissions",
+  adminReadLimiter,
   requireAdminKey,
   async (_req, res): Promise<void> => {
     const submissions = await db
