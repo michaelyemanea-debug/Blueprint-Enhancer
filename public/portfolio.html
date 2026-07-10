@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — Ydhar Asset Valuation</title>
+  <style>
+    :root{
+      --card-bg:#fff; --card-border:#e6e6e6; --accent:#0b66ff;
+      --muted:#6b7280; --shadow:0 6px 18px rgba(15,23,42,0.08);
+      --placeholder:#f3f4f6;
+    }
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;margin:0;background:#f9fafb;color:#0f172a;padding:24px;}
+    .container{max-width:1100px;margin:0 auto;}
+    h2{margin:0 0 16px;font-size:20px;}
+    .intro{margin-bottom:20px;color:var(--muted);}    
+    .grid{display:grid;gap:16px;grid-template-columns:repeat(3,1fr);}    
+    @media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr);}}
+    @media (max-width:560px){.grid{grid-template-columns:1fr;}}
+    .card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .18s ease, box-shadow .18s ease;}
+    .card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(2,6,23,0.12);}
+    .imgwrap{height:160px;background:var(--placeholder);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+    .imgwrap img{width:100%;height:100%;object-fit:cover;display:block;}
+    .card-body{padding:12px 14px;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
+    .meta{font-size:14px;color:var(--muted);margin-bottom:8px;}
+    .name{font-weight:600;margin-bottom:8px;}
+    .actions{display:flex;gap:8px;align-items:center;}
+    .btn{padding:8px 12px;border-radius:8px;border:1px solid transparent;background:var(--accent);color:#fff;text-decoration:none;font-size:13px;cursor:pointer;}
+    .btn.ghost{background:transparent;color:var(--accent);border-color:var(--accent);}
+    .btn[aria-disabled="true"]{opacity:.6;cursor:not-allowed;}
+    /* Modal styles */
+    .overlay{position:fixed;inset:0;background:rgba(2,6,23,0.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:1200;}
+    .overlay.show{display:flex;}
+    .modal{background:#fff;border-radius:10px;max-width:900px;width:100%;max-height:90vh;overflow:auto;box-shadow:0 30px 80px rgba(2,6,23,0.4);position:relative;padding:16px;}
+    .modal img{width:100%;height:auto;display:block;border-radius:4px;}
+    .close-btn{position:absolute;right:10px;top:10px;background:#111;color:#fff;border-radius:6px;padding:6px 8px;border:none;cursor:pointer;}
+    footer{margin-top:28px;padding-top:12px;color:var(--muted);font-size:13px;border-top:1px solid #eef2f7;}
+  </style>
+</head>
+<body>
+  <main class="container" id="main">
+    <h2>Portfolio</h2>
+    <p class="intro">The following properties are valuated by Ydhar Asset Valuation PLC.</p>
+
+    <section class="grid" id="portfolioGrid">
+      <!-- Cards are injected by JS -->
+    </section>
+
+    <footer id="siteFooter">Copyright © Ydhar Trading <span id="year">2019</span></footer>
+  </main>
+
+  <!-- Modal -->
+  <div id="overlay" class="overlay" role="dialog" aria-hidden="true" aria-modal="true">
+    <div class="modal" role="document">
+      <button id="closeModal" class="close-btn" aria-label="Close">✕</button>
+      <img id="modalImage" alt="Recommendation letter preview" src="" />
+    </div>
+  </div>
+
+  <script>
+    // Data model
+    const items = [
+      { id:1, name:"Kerchanshe", sector:"Trading", letter:"/assets/kerchanshe.jpg" },
+      { id:2, name:"Buna Pen", sector:"Factory", letter:null },
+      { id:3, name:"Israel Degefa", sector:"Coffee Supply", letter:"/assets/israel.jpg" },
+      { id:4, name:"Kombolcha", sector:"Textile", letter:null },
+      { id:5, name:"Gelana", sector:"Farm", letter:null },
+      { id:6, name:"Sidama", sector:"Coffee Farmer Union", letter:null },
+      { id:7, name:"Daewoo", sector:"Construction PLC", letter:"/assets/daewoo.jpg", image:"/assets/daewoo.jpg" },
+      { id:8, name:"Teklebirhan", sector:"Construction", letter:null },
+      { id:9, name:"AB Plast", sector:"Engineering & Construction", letter:"/assets/abplast.jpg" }
+    ];
+
+    // Helper: placeholder image (data URI)
+    const placeholder =
+      "data:image/svg+xml;utf8," +
+      encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500"><rect width="100%" height="100%" fill="#f3f4f6"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#9ca3af" font-family="Arial,Helvetica,sans-serif" font-size="20">No image available</text></svg>');
+
+    const grid = document.getElementById("portfolioGrid");
+    const overlay = document.getElementById("overlay");
+    const modalImg = document.getElementById("modalImage");
+    const closeBtn = document.getElementById("closeModal");
+
+    function createCard(item){
+      const card = document.createElement("article");
+      card.className = "card";
+      const imgwrap = document.createElement("div");
+      imgwrap.className = "imgwrap";
+      const img = document.createElement("img");
+      img.src = item.image || item.letter || placeholder;
+      img.alt = item.name + " — portfolio image";
+      img.onerror = () => { img.src = placeholder; };
+      imgwrap.appendChild(img);
+
+      const body = document.createElement("div");
+      body.className = "card-body";
+      body.innerHTML = `
+        <div>
+          <div class="meta">${escapeHtml(item.sector)}</div>
+          <div class="name">${escapeHtml(item.name)}</div>
+        </div>
+      `;
+
+      const actions = document.createElement("div");
+      actions.className = "actions";
+
+      // If letter exists, add preview button
+      const previewBtn = document.createElement("button");
+      previewBtn.className = "btn";
+      previewBtn.textContent = item.letter ? "Preview Recommendation Letter" : "No recommendation available";
+      previewBtn.disabled = !item.letter;
+      previewBtn.setAttribute("aria-disabled", item.letter ? "false" : "true");
+      if (item.letter){
+        previewBtn.addEventListener("click", () => openModal(item.letter, item.name));
+      } else {
+        previewBtn.classList.add("ghost");
+      }
+      actions.appendChild(previewBtn);
+
+      // Link or fallback
+      const detailsLink = document.createElement("a");
+      detailsLink.className = "btn ghost";
+      if (item.link && item.link !== "#"){
+        detailsLink.href = item.link;
+        detailsLink.textContent = "Details";
+      } else {
+        detailsLink.href = "javascript:;";
+        detailsLink.textContent = "Contact us for details";
+        detailsLink.addEventListener("click", (e) => { e.preventDefault(); alert('Contact Ydhar for details about ' + item.name); });
+      }
+      actions.appendChild(detailsLink);
+
+      body.appendChild(actions);
+
+      card.appendChild(imgwrap);
+      card.appendChild(body);
+      return card;
+    }
+
+    function populate(){
+      items.forEach(i => grid.appendChild(createCard(i)));
+    }
+
+    function openModal(src, name){
+      modalImg.src = src;
+      modalImg.alt = "Recommendation letter — " + name;
+      overlay.classList.add("show");
+      overlay.setAttribute("aria-hidden","false");
+      // focus management
+      closeBtn.focus();
+    }
+    function closeModal(){
+      overlay.classList.remove("show");
+      overlay.setAttribute("aria-hidden","true");
+      modalImg.src = "";
+    }
+
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) closeModal();
+    });
+    closeBtn.addEventListener("click", closeModal);
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+
+    // Footer year update
+    document.getElementById("year").textContent = (new Date()).getFullYear();
+
+    // small escape-hatch for unsafe text
+    function escapeHtml(s){ return String(s).replace(/[&<>"']/g, (c)=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c]); }
+
+    populate();
+  </script>
+</body>
+</html>
